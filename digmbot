@@ -31,9 +31,9 @@ BEGIN {
 }
 
 function setup() {
-	if (nick == "")      nick      = "digmbot"
-	if (owner == "")     owner     = "paradigm"
-	if (server == "")    server    = "chat.freenode.net"
+	if (nick == "")      nick      = "digmbot_tmp"
+	if (owner == "")     owner     = "nova"
+	if (server == "")    server    = "irc.libera.chat"
 	if (port == "")      port      = 6667
 	if (plugindir == "") plugindir = "./plugins"
 	if (initfile == "")  initfile = "./init"
@@ -100,6 +100,10 @@ function parse() {
 		}
 		if ($1 == "join") {
 			send("JOIN " $2, net)
+			return
+		}
+		if ($1 == "nick") {
+			send("NICK " $2, net)
 			return
 		}
 		if ($1 == "part") {
